@@ -17,9 +17,9 @@ int main() {
     char *filenameIn, *filenameOut;
     char *fileTMP = const_cast<char *>("tempFile");
 
-    filenameIn = readChars("Podaj nazwe pliku Wejsciowego, eg. test.bmp / test.ks");
+    filenameIn = readChars("Podaj nazwe pliku Wejsciowego, eg. test.bmp / test.ks\n");
 
-    filenameOut = readChars("Podaj nazwe pliku Wyjsciowego");
+    filenameOut = readChars("Podaj nazwe pliku Wyjsciowego\n");
 
     switch (*option) {
         case 49: {
@@ -27,7 +27,7 @@ int main() {
             int width = *(int *) &info[18];
             int height = *(int *) &info[22];
             pixelVector = readPixelsFromBMP(filenameIn);
-            grey = readChars("Wybierz opcje:\n1:Skala szarosci\n2:Kolor\n");
+            grey = readChars("\nWybierz opcje:\n1:Skala szarosci\n2:Kolor\n");
             if (*grey == 49) {
                 pixelVector = convertToGrey(pixelVector);
             }
@@ -47,7 +47,7 @@ int main() {
         }
             break;
         default:
-            printf("Bledna opcja");
+            printf("Bledna opcja\n");
     }
 
     return 0;
