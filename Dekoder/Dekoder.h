@@ -1,11 +1,13 @@
 #ifndef KONWERTER_DEKODER_H
 #define KONWERTER_DEKODER_H
 
+#include <cstdio>
+#include <cstdlib>
+#include <vector>
+#include <iostream>
+#include "Dekoder.h"
+#include "../Tools/Functions.h"
 #include "../Tools/Structs.h"
-
-
-using namespace std;
-
 
 void generateFileBMP(vector<Pixel> pixelVector, int width, int height, char *filenameOut);
 

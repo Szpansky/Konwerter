@@ -1,6 +1,3 @@
-#include <iostream>
-#include <cstring>
-#include <cstdlib>
 #include "Functions.h"
 
 
@@ -48,17 +45,17 @@ unsigned char *createIMG(vector<Pixel> pixels, int width, int height) {
     return img;
 }
 
-int getPartedNumber(int value){
-    if (value >= 0 && value < 64 ){
+int getPartedNumber(int value) {
+    if (value >= 0 && value < 64) {
         return 0;
     }
-    if (value >= 64 && value < 128 ){
+    if (value >= 64 && value < 128) {
         return 64;
     }
-    if (value >= 128 && value < 192 ){
+    if (value >= 128 && value < 192) {
         return 128;
     }
-    if (value >= 192 && value < 256 ){
+    if (value >= 192 && value < 256) {
         return 192;
     }
 

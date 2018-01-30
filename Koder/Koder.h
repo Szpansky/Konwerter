@@ -1,12 +1,13 @@
 #ifndef KONWERTER_KODER_H
 #define KONWERTER_KODER_H
 
+#include <cstdio>
+#include <iostream>
+#include <cstdlib>
 #include <vector>
 #include "../Tools/Functions.h"
 #include "../Tools/Structs.h"
 
-
-void generateFileKS(vector<Pixel>, int, int);
 
 vector<Pixel> readPixelsFromBMP(char *);
 

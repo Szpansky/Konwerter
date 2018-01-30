@@ -1,6 +1,8 @@
 #ifndef KONWERTER_STRUCTS_H
 #define KONWERTER_STRUCTS_H
 
+#include <vector>
+
 
 const unsigned char fileHeaderSizeKS = 14;    //rozmiar nagłówka pliku KS
 const unsigned char infoHeaderSizeKS = 64;   // rozmiar informajcji o obrazie pliku KS

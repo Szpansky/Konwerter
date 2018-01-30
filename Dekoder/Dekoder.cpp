@@ -1,10 +1,4 @@
-#include <cstdio>
-#include <cstdlib>
-#include <vector>
-#include <iostream>
 #include "Dekoder.h"
-#include "../Tools/Functions.h"
-
 
 using namespace std;
 
@@ -64,6 +58,7 @@ vector<Pixel> readPixelsFromKS(char *filename) {
     int width = *(int *) &info[18];
     int height = *(int *) &info[22];
     char fileType[2];
+
     fileType[0] = *(char *) &info[0];
     fileType[1] = *(char *) &info[1];
 
@@ -114,7 +109,7 @@ unsigned char *readHeaderFromKS(char *filename) {
     int width = *(int *) &info[18];
     int height = *(int *) &info[22];
 
-    char fileType[2];
+    unsigned char fileType[2];
 
     fileType[0] = *(char *) &info[0];
     fileType[1] = *(char *) &info[1];

@@ -1,8 +1,4 @@
-#include <cstdio>
-#include <iostream>
-#include <cstdlib>
 #include "Koder.h"
-
 
 using namespace std;
 
@@ -97,7 +93,7 @@ unsigned char *readHeaderFromBMP(char *filename) {
     int width = *(int *) &info[18];
     int height = *(int *) &info[22];
 
-    char fileType[2];
+    unsigned char fileType[2];
 
     fileType[0] = *(char *) &info[0];
     fileType[1] = *(char *) &info[1];

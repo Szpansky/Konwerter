@@ -431,7 +431,7 @@ void Decode(void) {
 void inicialFiles(FILE *infileTMP, FILE *outfileTMP) {
     infile = infileTMP;
     outfile = outfileTMP;
-    if(infile == NULL || outfile == NULL){
+    if (infile == NULL || outfile == NULL) {
         printf("Blad odczytu pliku");
         exit(1);
     }

@@ -14,17 +14,12 @@ int main() {
     option = readChars("Wybierz opcje:\n1:Kodowanie\n2:Dekodowanie\n");
 
     char *grey;
-
-
     char *filenameIn, *filenameOut;
-    char *fileTMP = const_cast<char *>("tempFileForCompress");
+    char *fileTMP = const_cast<char *>("tempFile");
 
     filenameIn = readChars("Podaj nazwe pliku Wejsciowego, eg. test.bmp / test.ks");
-    //infile = fopen(filenameIn, "rb");
 
     filenameOut = readChars("Podaj nazwe pliku Wyjsciowego");
-    //  outfile = fopen(filenameOut, "wb");
-
 
     switch (*option) {
         case 49: {
@@ -54,19 +49,6 @@ int main() {
         default:
             printf("Bledna opcja");
     }
-/*
-
-    info = readHeaderFromKS(filenameIn);
-    int width = *(int *) &info[18];
-    int height = *(int *) &info[22];
-
-    pixelVector = readPixelsFromKS(filenameIn);
-
-    generateFileBMP(pixelVector, width, height);
-
-    generateFileKS(pixelVector, width, height);
-*/
-
 
     return 0;
 }

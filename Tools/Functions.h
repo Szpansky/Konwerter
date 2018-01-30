@@ -3,8 +3,10 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
+#include <cstring>
+#include <cstdlib>
 #include "Structs.h"
-#include"../Tools/Functions.h"
 
 
 using namespace std;
@@ -14,6 +16,7 @@ vector<Pixel> revertPixelMirrorHorisontal(vector<Pixel> pixels, int width, int h
 char *readChars(string info);
 
 unsigned char *createIMG(vector<Pixel> pixels, int width, int height);
+
 int getPartedNumber(int value);
 
 
