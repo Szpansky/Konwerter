@@ -3,24 +3,69 @@
 
 #include "Dekoder/Dekoder.h"
 #include "Koder/Koder.h"
+#include "lz77.h"
 
 
 int main() {
     unsigned char *info;
     vector<Pixel> pixelVector;
 
-    char *filename;
-    filename = readFileName("Podaj nazwe pliku eg: img.ks");
+    char *option;
+    option = readChars("Wybierz opcje:\n1:Kodowanie\n2:Dekodowanie\n");
 
-    info = readHeaderFromKS(filename);
+    char *grey;
+
+
+    char *filenameIn, *filenameOut;
+    char *fileTMP = const_cast<char *>("tempFileForCompress");
+
+    filenameIn = readChars("Podaj nazwe pliku Wejsciowego, eg. test.bmp / test.ks");
+    //infile = fopen(filenameIn, "rb");
+
+    filenameOut = readChars("Podaj nazwe pliku Wyjsciowego");
+    //  outfile = fopen(filenameOut, "wb");
+
+
+    switch (*option) {
+        case 49: {
+            info = readHeaderFromBMP(filenameIn);
+            int width = *(int *) &info[18];
+            int height = *(int *) &info[22];
+            pixelVector = readPixelsFromBMP(filenameIn);
+            grey = readChars("Wybierz opcje:\n1:Skala szarosci\n2:Kolor\n");
+            if (*grey == 49) {
+                pixelVector = convertToGrey(pixelVector);
+            }
+            generateFileKS(pixelVector, width, height, fileTMP);
+            inicialFiles(fopen(fileTMP, "rb"), fopen(filenameOut, "wb"));
+            Encode();
+        }
+            break;
+        case 50: {
+            inicialFiles(fopen(filenameIn, "rb"), fopen(fileTMP, "wb"));
+            Decode();
+            info = readHeaderFromKS(fileTMP);
+            int width = *(int *) &info[18];
+            int height = *(int *) &info[22];
+            pixelVector = readPixelsFromKS(fileTMP);
+            generateFileBMP(pixelVector, width, height, filenameOut);
+        }
+            break;
+        default:
+            printf("Bledna opcja");
+    }
+/*
+
+    info = readHeaderFromKS(filenameIn);
     int width = *(int *) &info[18];
     int height = *(int *) &info[22];
 
-    pixelVector = readPixelsFromKS(filename);
+    pixelVector = readPixelsFromKS(filenameIn);
 
     generateFileBMP(pixelVector, width, height);
 
     generateFileKS(pixelVector, width, height);
+*/
 
 
     return 0;

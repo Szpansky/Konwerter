@@ -2,10 +2,26 @@
 #include <iostream>
 #include <cstdlib>
 #include "Koder.h"
-#include "../Tools/Functions.h"
 
 
 using namespace std;
+
+
+vector<Pixel> convertToGrey(vector<Pixel> vectorPixels) {
+    vector<Pixel> vectorTMP;
+    Pixel pixelTMP;
+    int greyColor;
+
+    for (int i = 0; i <= vectorPixels.size(); i++) {
+        pixelTMP = vectorPixels[i];
+        greyColor = (int) (pixelTMP.R * 0.299 + pixelTMP.G * 0.587 + pixelTMP.B * 0.114);
+        pixelTMP.R = greyColor;
+        pixelTMP.G = greyColor;
+        pixelTMP.B = greyColor;
+        vectorTMP.push_back(pixelTMP);
+    }
+    return vectorTMP;
+}
 
 
 vector<Pixel> readPixelsFromBMP(char *filename) {
@@ -47,9 +63,16 @@ vector<Pixel> readPixelsFromBMP(char *filename) {
             data[j + 2] = tmp;
 
             // cout << "R: " << (int) data[j] << " G: " << (int) data[j + 1] << " B: " << (int) data[j + 2] << endl;
+
+
+            pixel.R = getPartedNumber((int) data[j]);
+            pixel.G = getPartedNumber((int) data[j + 1]);
+            pixel.B = getPartedNumber((int) data[j + 2]);
+/*
             pixel.R = (int) data[j];
             pixel.G = (int) data[j + 1];
-            pixel.B = (int) data[j + 2];
+            pixel.B = (int) data[j + 2];*/
+
             pixelVector.push_back(pixel);
         }
     }
@@ -95,7 +118,7 @@ unsigned char *readHeaderFromBMP(char *filename) {
 }
 
 
-void generateFileKS(vector<Pixel> pixelVector, int width, int height) {
+void generateFileKS(vector<Pixel> pixelVector, int width, int height, char *filenameOut) {
 
     unsigned char bmpfileheader[fileHeaderSizeKS] = {'K', 'S', 0, 0, 0, 0, 0, 0, 0, 0, offsetKS, 0, 0, 0};
     unsigned char bmpinfoheader[infoHeaderSizeKS] = {infoHeaderSizeKS, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 24, 0};
@@ -128,7 +151,7 @@ void generateFileKS(vector<Pixel> pixelVector, int width, int height) {
 
 
     FILE *f;
-    f = fopen("img2.ks", "wb");
+    f = fopen(filenameOut, "wb");
     fwrite(bmpfileheader, 1, fileHeaderSizeKS, f);
     fwrite(bmpinfoheader, 1, infoHeaderSizeKS, f);
 

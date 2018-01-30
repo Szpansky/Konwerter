@@ -9,7 +9,7 @@
 using namespace std;
 
 
-void generateFileBMP(vector<Pixel> pixelVector, int width, int height) {
+void generateFileBMP(vector<Pixel> pixelVector, int width, int height, char *filenameOut) {
 
     unsigned char bmpfileheader[fileHeaderSizeBMP] = {'B', 'M', 0, 0, 0, 0, 0, 0, 0, 0, offsetBMP, 0, 0, 0};
     unsigned char bmpinfoheader[infoHeaderSizeBMP] = {infoHeaderSizeBMP, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 24, 0};
@@ -32,7 +32,7 @@ void generateFileBMP(vector<Pixel> pixelVector, int width, int height) {
     bmpinfoheader[11] = (unsigned char) (height >> 24);
 
     FILE *f;
-    f = fopen("img.bmp", "wb");
+    f = fopen(filenameOut, "wb");
     fwrite(bmpfileheader, 1, fileHeaderSizeBMP, f);
     fwrite(bmpinfoheader, 1, infoHeaderSizeBMP, f);
 
@@ -126,7 +126,6 @@ unsigned char *readHeaderFromKS(char *filename) {
 
     cout << endl;
     cout << "  Type: " << fileType[0] << fileType[1] << endl;
-    cout << "  Name: " << filename << endl;
     cout << " Width: " << width << endl;
     cout << "Height: " << height << endl;
 

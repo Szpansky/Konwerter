@@ -7,7 +7,7 @@
 using namespace std;
 
 
-void generateFileBMP(vector<Pixel> pixelVector, int width, int height);
+void generateFileBMP(vector<Pixel> pixelVector, int width, int height, char *filenameOut);
 
 vector<Pixel> readPixelsFromKS(char *filename);
 
